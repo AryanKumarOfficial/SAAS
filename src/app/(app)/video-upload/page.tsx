@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 import toast, {Toaster} from "react-hot-toast";
@@ -13,6 +13,10 @@ export default function VideoUpload() {
     const router = useRouter();
     // max file size of 70MB
     const MAX_FILE_SIZE = 70 * 1024 * 1024;
+
+    useEffect(() => {
+        document.title = "Video Upload | FreeTube"
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -36,6 +40,9 @@ export default function VideoUpload() {
                 toast.error("Error uploading video")
             }
             toast.success("Video Uploaded Successfully!")
+            setTimeout(() => {
+                router.push("/home")
+            }, 3000)
         } catch (e) {
             console.log(e, "error")
 

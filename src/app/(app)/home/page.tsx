@@ -27,6 +27,7 @@ export default function HomePage() {
     }, [])
 
     useEffect(() => {
+        document.title = "Home | FreeTube"
         fetchVideos();
     }, [fetchVideos]);
 

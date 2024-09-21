@@ -41,6 +41,7 @@ export default function SocialSharePage() {
     const imageRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
+        document.title = "Image Editor | FreeTube"
         if (uploadedImage) {
             setIsTransforming(true);
         }
