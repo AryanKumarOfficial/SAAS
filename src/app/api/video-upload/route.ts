@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({error: "Unauthorized"}, {status: 401})
         }
 
-        if (!process.env.NEXT_PUBLIC_CLOUDINARY_NAME || !process.env.CLOUDINARY_API || !process.env.CLOUDINARY_SECRET) {
+        if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API || !process.env.CLOUDINARY_SECRET) {
             return NextResponse.json({error: "cloudinary credentials not found!"}, {status: 500})
         }
         const formData = await request.formData();
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({video}, {status: 201})
 
     } catch (e) {
-        console.log("Upload video failed")
+        console.log(e, "Upload video failed")
         return NextResponse.json({error: "upload video failed"}, {status: 500})
     } finally {
         await prisma.$disconnect();

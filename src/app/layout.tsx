@@ -22,8 +22,17 @@ export default function RootLayout({
             <html lang="en">
             <body className={inter.className}>
             <Toaster
-                position={"top-center"}
-                reverseOrder={true}
+                position="top-center"
+                reverseOrder={false}
+                gutter={8}
+                toastOptions={{
+                    className: '',
+                    duration: 5000,
+                    style: {
+                        background: '#363636',
+                        color: '#fff',
+                    }
+                }}
             />
             {children}
             </body>
