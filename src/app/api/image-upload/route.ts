@@ -2,12 +2,10 @@ import {NextResponse, NextRequest} from "next/server";
 import {auth} from "@clerk/nextjs/server";
 
 import {v2 as cloudinary} from 'cloudinary';
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 // Configuration
 cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_NAME,
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API,
     api_secret: process.env.CLOUDINARY_SECRET
 });
@@ -19,7 +17,7 @@ interface CloudinaryUploadResult {
 }
 
 export async function POST(request: NextRequest) {
-    const {userId} = auth();
+    const {userId} = await auth();
     if (!userId) {
         return NextResponse.json({error: "Unauthorized"}, {status: 401})
     }
@@ -27,7 +25,6 @@ export async function POST(request: NextRequest) {
     try {
         const formData = await request.formData();
         const file = formData.get("file") as File | null;
-
         if (!file) {
             return NextResponse.json({error: "File not found"}, {status: 400})
         }
@@ -42,7 +39,7 @@ export async function POST(request: NextRequest) {
                     if (error) reject(error)
                     else resolve(result as CloudinaryUploadResult)
                 }
-            )
+            );
             uploadStream.end(buffer);
         });
 

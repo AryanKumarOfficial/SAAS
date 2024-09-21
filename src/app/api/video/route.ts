@@ -14,6 +14,7 @@ export const GET = async (req: NextRequest) => {
         )
         return NextResponse.json({videos}, {status: 200})
     } catch (e) {
+        console.log(e)
         return NextResponse.json({error: "Error fetching videos"}, {status: 500})
     } finally {
         await prisma.$disconnect();

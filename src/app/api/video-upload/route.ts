@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 // Configuration
 cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_NAME,
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API,
     api_secret: process.env.CLOUDINARY_SECRET
 });
