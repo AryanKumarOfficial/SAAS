@@ -79,7 +79,7 @@ export default function AppLayout({children}: Readonly<{ children: React.ReactNo
                             </Link>
                         </div>
                         <div
-                            className={"flex-none flex items-center space-x-4"}>
+                            className={"flex-none flex flex-wrap items-center space-x-4"}>
                             {user && (
                                 <>
                                     <div className={"avatar"}>
@@ -90,7 +90,7 @@ export default function AppLayout({children}: Readonly<{ children: React.ReactNo
                                             />
                                         </div>
                                     </div>
-                                    <span className={"text-sm truncate max-w-sm lg:max-w-md"}>
+                                    <span className={"text-sm hidden lg:block truncate max-w-sm lg:max-w-md"}>
                                         {user.username || user.emailAddresses[0].emailAddress}
                                     </span>
                                     <button
